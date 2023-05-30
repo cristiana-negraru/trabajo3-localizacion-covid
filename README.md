@@ -1,4 +1,4 @@
-:point_right: [image](https://github.com/cristiana-negraru/trabajo3-localizacion-covid/assets/125256226/2e4cf408-8e5c-4545-84eb-b4278e66039c)
+:point_right: [![SonarCloud](https://github.com/cristiana-negraru/trabajo3-localizacion-covid/actions/workflows/main.yml/badge.svg)](https://github.com/cristiana-negraru/trabajo3-localizacion-covid/actions/workflows/main.yml)
 
 
 # EMS-lab3 Maintainability
