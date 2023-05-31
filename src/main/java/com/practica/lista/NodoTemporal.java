@@ -8,11 +8,11 @@ import com.practica.genericas.PosicionPersona;
 
 /**
  * Nodo para guardar un instante de tiempo. Además guardamos una lista con las coordeandas
- * y las personas (solo número) que en ese instante están en una coordeanda en concreto
+ * y las personas (solo número) que en ese instante están en una coordeanda en concreto  
  *
  */
 public class NodoTemporal implements Comparable<NodoTemporal> {
-
+	
 	private final LinkedList<NodoPosicion> listaCoordenadas;
 	private FechaHora fecha;
 
@@ -25,7 +25,7 @@ public class NodoTemporal implements Comparable<NodoTemporal> {
 
 		return nt;
 	}
-
+	
 	public NodoTemporal() {
 		super();
 		listaCoordenadas = new LinkedList<>();
@@ -35,7 +35,7 @@ public class NodoTemporal implements Comparable<NodoTemporal> {
 	public FechaHora getFecha() {
 		return fecha;
 	}
-
+	
 	public void combineNodes(NodoTemporal other) {
 		if (!this.fecha.equals(other.fecha)) {
 			return;

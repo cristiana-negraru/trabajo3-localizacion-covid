@@ -5,8 +5,8 @@ import com.practica.genericas.PosicionPersona;
 
 /**
  * Nodo para la lista de coordenadas. En el guardamos cuántas personas  están
- * en una coordenada  en un momento temporal.
- * También guardaremos la lista de personas que están en esa coordenada en un
+ * en una coordenada  en un momento temporal. 
+ * También guardaremos la lista de personas que están en esa coordenada en un 
  * momento en concreto
  */
 public class NodoPosicion {
@@ -17,14 +17,14 @@ public class NodoPosicion {
 	public static NodoPosicion fromPosicionPersona(PosicionPersona pp) {
 		return new NodoPosicion(pp.getCoordenada(), 1);
 	}
-
+	
 	public NodoPosicion() {
 		super();
 	}
-
+	
 	public NodoPosicion(Coordenada coordenada,  int numPersonas) {
 		super();
-		this.coordenada = coordenada;
+		this.coordenada = coordenada;		
 		this.numPersonas = numPersonas;
 	}
 
@@ -55,7 +55,7 @@ public class NodoPosicion {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-
+		
 		NodoPosicion other = (NodoPosicion) obj;
 		return this.coordenada.equals(other.coordenada);
 	}
@@ -64,5 +64,5 @@ public class NodoPosicion {
 	public int hashCode() {
 		return this.coordenada.hashCode();
 	}
-
+	
 }

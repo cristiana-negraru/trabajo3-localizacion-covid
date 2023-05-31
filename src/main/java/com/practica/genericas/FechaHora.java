@@ -1,12 +1,10 @@
 package com.practica.genericas;
 
-import java.time.LocalDateTime;
-
 public class FechaHora implements Comparable<FechaHora>{
 
 	public static class Fecha implements Comparable<Fecha> {
 		private int dia, mes, anio;
-
+		 
 		public static  Fecha parseFecha(String data) throws IllegalArgumentException{
 			String[] valores = data.split("\\/");
 			if (valores.length != 3) {
@@ -94,6 +92,7 @@ public class FechaHora implements Comparable<FechaHora>{
 			}
 		}
 	}
+
 	public static class Hora implements Comparable<Hora> {
 		private int hora, minuto;
 
@@ -124,7 +123,7 @@ public class FechaHora implements Comparable<FechaHora>{
 		public String toString() {
 			return String.format("%02d:%02d", hora,minuto);
 		}
-
+		
 		@Override
 		public boolean equals(Object obj) {
 			if (obj == null) {
@@ -168,8 +167,8 @@ public class FechaHora implements Comparable<FechaHora>{
 		Fecha date = Fecha.parseFecha(fecha);
 		Hora time = Hora.parseHora(hora);
 		return new FechaHora(date, time);
-	}
-
+	}	
+	
 	public FechaHora(FechaHora other) {
 		fecha = new Fecha(other.fecha);
 		hora = new Hora(other.hora);
@@ -197,7 +196,7 @@ public class FechaHora implements Comparable<FechaHora>{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) 
 			return true;
 		if (obj == null)
 			return false;
@@ -222,6 +221,5 @@ public class FechaHora implements Comparable<FechaHora>{
 				fecha.toString(),
 				hora.toString());
 	}
-
-
+	
 }

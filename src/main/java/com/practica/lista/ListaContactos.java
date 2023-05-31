@@ -42,7 +42,7 @@ public class ListaContactos {
 	public int numNodosCoordenadaEntreDosInstantes(FechaHora inicio, FechaHora fin) {
 		return lista.stream().filter(nt -> nt.betweenTimes(inicio, fin)).map(NodoTemporal::countCoordenadas).reduce(0, Integer::sum);
 	}
-
+	
 	@Override
 	public String toString() {
 		String cadena="";
@@ -51,7 +51,7 @@ public class ListaContactos {
 		}
 		return cadena.trim();
 	}
-
+	
 	private void insertInPosition(NodoTemporal nt) throws IllegalArgumentException {
 		if (lista.contains(nt)) {
 			throw new IllegalArgumentException("Date is already in the list");
@@ -71,5 +71,5 @@ public class ListaContactos {
 			lista.add(pos, nt);
 		}
 	}
-
+	
 }

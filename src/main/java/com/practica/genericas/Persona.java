@@ -12,7 +12,7 @@ public class Persona {
 		if (data.length != MAX_DATOS_PERSONA) {
 			throw new EmsInvalidNumberOfDataException("Invalid number of fields for PERSONA");
 		}
-
+		
 		String nombre = data[2];
 		String apellidos = data[3];
 		String documento = data[1];
@@ -20,7 +20,7 @@ public class Persona {
 		String direccion = data[5];
 		String cp = data[6];
 		FechaHora fechaNacimiento = FechaHora.parseFecha(data[7]);
-
+		
 		return new Persona(nombre, apellidos, documento, email, direccion, cp, fechaNacimiento);
 	}
 
@@ -39,7 +39,7 @@ public class Persona {
 	}
 
 	public Persona(String nombre, String apellidos, String documento, String email, String direccion, String cp,
-				   FechaHora fechaNacimiento) {
+			FechaHora fechaNacimiento) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.documento = documento;
@@ -59,9 +59,9 @@ public class Persona {
 		cadena += String.format("%s,%s;", apellidos, nombre);
 		// correo electrónico
 		cadena += String.format("%s;", email);
-		// Direccion y código postal
+        // Direccion y código postal
 		cadena += String.format("%s,%s;", direccion, cp);
-		// Fecha de nacimiento
+        // Fecha de nacimiento
 		cadena+=fecha.toString();
 
 		return cadena;
@@ -84,4 +84,3 @@ public class Persona {
 		return documento.hashCode();
 	}
 }
-

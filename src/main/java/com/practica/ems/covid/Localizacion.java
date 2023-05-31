@@ -26,11 +26,11 @@ public class Localizacion {
 		}
 		lista.add(p);
 	}
-
+	
 	public int findLocalizacion (String documento, FechaHora fh) throws EmsLocalizationNotFoundException {
-		PosicionPersona pp = new PosicionPersona(null, documento, fh);
+	    PosicionPersona pp = new PosicionPersona(null, documento, fh);
 		int pos = lista.indexOf(pp);
-
+		
 		if (pos == -1) {
 			throw new EmsLocalizationNotFoundException();
 		}
@@ -54,9 +54,9 @@ public class Localizacion {
 			throw new EmsLocalizationNotFoundException();
 		}
 	}
-
-	void printLocalizacion() {
-		System.out.printf(toString());
+	
+	void printLocalizacion() {  
+		System.out.printf(toString()); 
 	}
 
 	@Override
@@ -70,6 +70,5 @@ public class Localizacion {
 		cadena = cadena.substring(0, cadena.length()-1);
 		return cadena;
 	}
-
+	
 }
-

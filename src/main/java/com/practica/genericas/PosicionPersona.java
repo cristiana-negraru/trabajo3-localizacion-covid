@@ -11,7 +11,7 @@ public class PosicionPersona {
 	private FechaHora fechaPosicion;
 
 	public static PosicionPersona parsePosicionPersona(String[] data) throws EmsInvalidNumberOfDataException {
-
+		
 		if (data.length != MAX_DATOS_LOCALIZACION) {
 			throw new EmsInvalidNumberOfDataException("La cantidad de campos de la localización es incorrecta");
 		}
@@ -23,7 +23,7 @@ public class PosicionPersona {
 	}
 
 	public PosicionPersona() {
-
+		
 	}
 
 	public PosicionPersona(Coordenada coordenada, String documento, FechaHora fechaPosicion) {
@@ -43,7 +43,7 @@ public class PosicionPersona {
 	public boolean isThisPerson(String documento) {
 		return this.documento.equals(documento);
 	}
-
+	
 	@Override
 	public String toString() {
 		return String.format("%s;%s;%s", documento, fechaPosicion.toString(), coordenada.toString());
@@ -60,10 +60,10 @@ public class PosicionPersona {
 		if (!(obj instanceof PosicionPersona)) {
 			return false;
 		}
-
+		
 		PosicionPersona posicionPersona = (PosicionPersona) obj;
-		return posicionPersona.documento.equals(this.documento) &&
-				posicionPersona.fechaPosicion.equals(this.fechaPosicion);
+		return posicionPersona.documento.equals(this.documento) && 
+			posicionPersona.fechaPosicion.equals(this.fechaPosicion);
 	}
 
 	@Override
@@ -74,5 +74,5 @@ public class PosicionPersona {
 		result = prime * result + ((fechaPosicion == null) ? 0 : fechaPosicion.hashCode());
 		return result;
 	}
-
+		
 }

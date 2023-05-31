@@ -52,50 +52,26 @@ public class ContactosCovid {
 		this.listaContactos = listaContactos;
 	}
 
-	public void loadData(String data, boolean reset) throws
-			EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException
+	public void loadData(String data, boolean reset) throws 
+		EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException 
 	{
 		if (reset) {
 			reset();
 		}
-
+		
 		Stream<String> stream = Stream.of(data.split("\\n"));
-		stream.forEach(line -> {
-			try {
-				parseLine(line);
-			} catch (EmsInvalidTypeException e) {
-				throw new RuntimeException(e);
-			} catch (EmsInvalidNumberOfDataException e) {
-				throw new RuntimeException(e);
-			} catch (EmsDuplicatePersonException e) {
-				throw new RuntimeException(e);
-			} catch (EmsDuplicateLocationException e) {
-				throw new RuntimeException(e);
-			}
-		});
+		stream.forEach(line -> parseLine(line));
 	}
 
-	public void loadDataFile(String fichero, boolean reset) throws
-			EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException, IOException
+	public void loadDataFile(String fichero, boolean reset) throws 
+		EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException, IOException
 	{
 		if (reset) {
 			reset();
 		}
 
 		try (Stream<String> stream = Files.lines(Paths.get(fichero))) {
-			stream.forEach(line -> {
-				try {
-					parseLine(line);
-				} catch (EmsInvalidTypeException e) {
-					throw new RuntimeException(e);
-				} catch (EmsInvalidNumberOfDataException e) {
-					throw new RuntimeException(e);
-				} catch (EmsDuplicatePersonException e) {
-					throw new RuntimeException(e);
-				} catch (EmsDuplicateLocationException e) {
-					throw new RuntimeException(e);
-				}
-			});
+			stream.forEach(line -> parseLine(line));
 		}
 	}
 
@@ -124,11 +100,11 @@ public class ContactosCovid {
 	private void reset() {
 		this.poblacion = new Poblacion();
 		this.localizacion = new Localizacion();
-		this.listaContactos = new ListaContactos();
+		this.listaContactos = new ListaContactos();	
 	}
 
-	private void parseLine(String linea) throws
-			EmsInvalidTypeException, EmsInvalidNumberOfDataException,EmsDuplicatePersonException, EmsDuplicateLocationException
+	private void parseLine(String linea) throws 
+		EmsInvalidTypeException, EmsInvalidNumberOfDataException,EmsDuplicatePersonException, EmsDuplicateLocationException 
 	{
 
 		String datos[] = ContactosCovid.dividirLineaData(linea);

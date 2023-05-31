@@ -8,7 +8,7 @@ import com.practica.excecption.EmsPersonNotFoundException;
 import com.practica.genericas.Persona;
 
 public class Poblacion {
-
+	
 	private List<Persona> lista;
 
 	public Poblacion() {
@@ -16,7 +16,7 @@ public class Poblacion {
 		this.lista = new LinkedList<Persona>();
 	}
 
-	public List<Persona> getLista() {
+	public List<Persona> getLista() {		
 		List<Persona> lista = new LinkedList<Persona>();
 		for(Persona p: this.lista) {
 			lista.add(new Persona(p));
@@ -30,33 +30,33 @@ public class Poblacion {
 		}
 		lista.add(persona);
 	}
-
-	public void delPersona(String documento) throws EmsPersonNotFoundException {
+	
+	public void delPersona(String documento) throws EmsPersonNotFoundException {		
 		Persona p = new Persona(documento);
 		if(!lista.remove(p)) {
 			throw new EmsPersonNotFoundException();
 		}
 	}
-
+	
 	public int findPersona (String documento) throws EmsPersonNotFoundException {
 		Persona p = new Persona(documento);
 		int pos = lista.indexOf(p);
-
+		
 		if (pos == -1) {
 			throw new EmsPersonNotFoundException();
 		}
 
 		return pos + 1;
 	}
-
-	public void printPoblacion() {
-		System.out.printf(toString());
+	
+	public void printPoblacion() {   
+	    System.out.printf(toString());
 	}
 
 	@Override
 	public String toString() {
 		String cadena = "";
-
+		
 		for(Persona p: lista) {
 			cadena += p.toString();
 			cadena += "\n";
@@ -67,7 +67,7 @@ public class Poblacion {
 
 		return cadena;
 	}
-
-
-
+	
+	
+	
 }
