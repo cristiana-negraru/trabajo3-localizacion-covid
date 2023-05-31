@@ -2,6 +2,7 @@ package com.practica.lista;
 
 
 import com.practica.genericas.Coordenada;
+import com.practica.genericas.PosicionPersona;
 
 /**
  * Nodo para la lista de coordenadas. En el guardamos cuántas personas  están
@@ -12,49 +13,55 @@ import com.practica.genericas.Coordenada;
 public class NodoPosicion {
 	private Coordenada coordenada;	
 	private int numPersonas;
-	private NodoPosicion siguiente;
-	
-	
+
+
+	public static NodoPosicion fromPosicionPersona(PosicionPersona pp) {
+		return new NodoPosicion(pp.getCoordenada(), 1);
+	}
+
 	public NodoPosicion() {
 		super();
-		siguiente = null;
 	}
-
-	
-	
-	
-	public NodoPosicion(Coordenada coordenada,  int numPersonas, NodoPosicion siguiente) {
+	public NodoPosicion(Coordenada coordenada,  int numPersonas) {
 		super();
-		this.coordenada = coordenada;		
-		this.numPersonas = numPersonas;
-		this.siguiente = siguiente;
-	}
-
-
-
-
-	public Coordenada getCoordenada() {
-		return coordenada;
-	}
-
-	public void setCoordenada(Coordenada coordenada) {
 		this.coordenada = coordenada;
+		this.numPersonas = numPersonas;
+	}
+
+	public NodoPosicion(NodoPosicion np) {
+		this.coordenada = new Coordenada(np.coordenada);
+		this.numPersonas = np.numPersonas;
+	}
+
+	public void combine(NodoPosicion other) {
+		if (this.coordenada.equals(other.coordenada))
+			this.numPersonas += other.numPersonas;
 	}
 
 	public int getNumPersonas() {
 		return numPersonas;
 	}
 
-	public void setNumPersonas(int numPersonas) {
-		this.numPersonas = numPersonas;
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (obj == null) {
+			return false;
+		}
+
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		NodoPosicion other = (NodoPosicion) obj;
+		return this.coordenada.equals(other.coordenada);
 	}
 
-	public NodoPosicion getSiguiente() {
-		return siguiente;
+	@Override
+	public int hashCode() {
+		return this.coordenada.hashCode();
 	}
 
-	public void setSiguiente(NodoPosicion siguiente) {
-		this.siguiente = siguiente;
-	}
-	
 }
