@@ -26,12 +26,10 @@ public class Poblacion {
 	}
 
 	public void addPersona (Persona persona) throws EmsDuplicatePersonException {
-		try {
-			findPersona(persona.getDocumento());
+		if (lista.contains(persona)) {
 			throw new EmsDuplicatePersonException();
-		} catch (EmsPersonNotFoundException e) {
-			lista.add(persona);
-		} 
+		}
+		lista.add(persona);
 	}
 	
 	public void delPersona(String documento) throws EmsPersonNotFoundException {
@@ -50,16 +48,14 @@ public class Poblacion {
 	}
 	
 	public int findPersona (String documento) throws EmsPersonNotFoundException {
-		int cont=0;
-		Iterator<Persona> it = lista.iterator();
-		while (it.hasNext() ) {
-			Persona persona = it.next();
-			cont++;
-			if(persona.getDocumento().equals(documento)) {
-				return cont;
-			}
-		}		
-		throw new EmsPersonNotFoundException();
+		Persona p = new Persona(documento);
+		int pos = lista.indexOf(p);
+
+		if (pos == -1) {
+			throw new EmsPersonNotFoundException();
+		}
+
+		return pos + 1;
 	}
 
 	public void printPoblacion() {
