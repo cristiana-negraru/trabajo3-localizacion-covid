@@ -64,7 +64,7 @@ public class ContactosCovid {
 		if (reset) {
 			reset();
 		}
-		String datas[] = dividirLineaData(data);
+		String datas[] = dividirEntrada(data);
 		for (String linea : datas) {
 			String datos[] = this.dividirLineaData(linea);
 			if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
@@ -93,7 +93,7 @@ public class ContactosCovid {
 		BufferedReader br = null;
 		String datas[] = null, data = null;
 		loadDataFile(fichero, reset, archivo, fr, br, datas, data);
-		
+
 	}
 
 	@SuppressWarnings("resource")
@@ -106,14 +106,15 @@ public class ContactosCovid {
 			br = new BufferedReader(fr);
 			if (reset) {
 				reset();
-			} 
+
+			}
 			/**
-			 * Lectura del fichero	línea a línea. Compruebo que cada línea 
-			 * tiene el tipo PERSONA o LOCALIZACION y cargo la línea de datos en la 
+			 * Lectura del fichero	línea a línea. Compruebo que cada línea
+			 * tiene el tipo PERSONA o LOCALIZACION y cargo la línea de datos en la
 			 * lista correspondiente. Sino viene ninguno de esos tipos lanzo una excepción
 			 */
 			while ((data = br.readLine()) != null) {
-				datas = dividirLineaData(data.trim());
+				datas = dividirEntrada(data.trim());
 				for (String linea : datas) {
 					String datos[] = this.dividirLineaData(linea);
 					if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
@@ -206,6 +207,11 @@ public class ContactosCovid {
 		}
 		this.poblacion.getLista().remove(pos);
 		return false;
+	}
+
+	private String[] dividirEntrada(String input) {
+		String cadenas[] = input.split("\\n");
+		return cadenas;
 	}
 
 	private String[] dividirLineaData(String data) {
