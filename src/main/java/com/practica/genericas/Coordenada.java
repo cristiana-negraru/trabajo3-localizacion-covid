@@ -4,7 +4,7 @@ package com.practica.genericas;
 public class Coordenada {
 	private float latitud, longitud;
 
-	
+
 	public Coordenada() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -14,7 +14,6 @@ public class Coordenada {
 		this.latitud = co.latitud;
 		this.longitud = co.longitud;
 	}
-
 
 	public Coordenada(float latitud, float longitud) {
 		super();
@@ -58,7 +57,11 @@ public class Coordenada {
 
 		Coordenada other = (Coordenada) obj;
 		return latitud == other.latitud && longitud == other.longitud;
-
 	}
-	
+
+	@Override
+	public String toString() {
+		return String.format("%.4f;%.4f\n", latitud, longitud);
+	}
+
 }

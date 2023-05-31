@@ -5,16 +5,13 @@ import com.practica.genericas.PosicionPersona;
 import java.util.LinkedList;
 
 public class ListaContactos {
+
 	private final LinkedList<NodoTemporal> lista;
+
 	public ListaContactos() {
 		lista = new LinkedList<>();
 	}
-	
-	/**
-	 * Insertamos en la lista de nodos temporales, y a la vez inserto en la lista de nodos de coordenadas. 
-	 * En la lista de coordenadas metemos el documento de la persona que está en esa coordenada 
-	 * en un instante 
-	 */
+
 	public void insertarNodoTemporal (PosicionPersona p) {
 		NodoTemporal nt = NodoTemporal.fromPosicionPersona(p);
 
@@ -31,8 +28,6 @@ public class ListaContactos {
 		}
 	}
 
-
-	
 	public int tamanioLista () {
 		return this.lista.size();
 	}
@@ -41,19 +36,13 @@ public class ListaContactos {
 		return lista.getFirst().toString();
 	}
 
-
 	public int numPersonasEntreDosInstantes(FechaHora inicio, FechaHora fin) {
 		return lista.stream().filter(nt -> nt.betweenTimes(inicio, fin)).map(NodoTemporal::countPersonas).reduce(0, Integer::sum);
 	}
-	
-	
-	
 	public int numNodosCoordenadaEntreDosInstantes(FechaHora inicio, FechaHora fin) {
 		return lista.stream().filter(nt -> nt.betweenTimes(inicio, fin)).map(NodoTemporal::countCoordenadas).reduce(0, Integer::sum);
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
 		String cadena="";
@@ -82,6 +71,5 @@ public class ListaContactos {
 			lista.add(pos, nt);
 		}
 	}
-
 
 }

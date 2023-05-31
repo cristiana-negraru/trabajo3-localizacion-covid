@@ -1,28 +1,27 @@
 package com.practica.ems.covid;
 
-
-import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.practica.excecption.EmsDuplicatePersonException;
 import com.practica.excecption.EmsPersonNotFoundException;
-import com.practica.genericas.FechaHora;
 import com.practica.genericas.Persona;
 
 public class Poblacion {
-	LinkedList<Persona> lista ;
+
+	private List<Persona> lista;
 
 	public Poblacion() {
 		super();
 		this.lista = new LinkedList<Persona>();
 	}
-	
-	public LinkedList<Persona> getLista() {
-		return lista;
-	}
 
-	public void setLista(LinkedList<Persona> lista) {
-		this.lista = lista;
+	public List<Persona> getLista() {
+		List<Persona> lista = new LinkedList<Persona>();
+		for(Persona p: this.lista) {
+			lista.add(new Persona(p));
+		}
+		return lista;
 	}
 
 	public void addPersona (Persona persona) throws EmsDuplicatePersonException {
@@ -31,22 +30,14 @@ public class Poblacion {
 		}
 		lista.add(persona);
 	}
-	
+
 	public void delPersona(String documento) throws EmsPersonNotFoundException {
-		int pos=-1;
-		/**
-		 * Busca la persona por documento, en caso de encontrarla
-		 * devuelve la posición dentro de la lista, sino está lanza
-		 * una excepción
-		 */
-		try {
-			pos = findPersona(documento);
-		} catch (EmsPersonNotFoundException e) {
+		Persona p = new Persona(documento);
+		if(!lista.remove(p)) {
 			throw new EmsPersonNotFoundException();
 		}
-		lista.remove(pos);		
 	}
-	
+
 	public int findPersona (String documento) throws EmsPersonNotFoundException {
 		Persona p = new Persona(documento);
 		int pos = lista.indexOf(p);
@@ -76,7 +67,6 @@ public class Poblacion {
 
 		return cadena;
 	}
-
 
 
 
