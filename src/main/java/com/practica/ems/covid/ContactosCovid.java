@@ -62,11 +62,9 @@ public class ContactosCovid {
 			EmsDuplicatePersonException, EmsDuplicateLocationException {
 		// borro información anterior
 		if (reset) {
-			this.poblacion = new Poblacion();
-			this.localizacion = new Localizacion();
-			this.listaContactos = new ListaContactos();
+			reset();
 		}
-		String datas[] = dividirEntrada(data);
+		String datas[] = dividirLineaData(data);
 		for (String linea : datas) {
 			String datos[] = this.dividirLineaData(linea);
 			if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
@@ -107,9 +105,7 @@ public class ContactosCovid {
 			fr = new FileReader(archivo);
 			br = new BufferedReader(fr);
 			if (reset) {
-				this.poblacion = new Poblacion();
-				this.localizacion = new Localizacion();
-				this.listaContactos = new ListaContactos();
+				reset();
 			} 
 			/**
 			 * Lectura del fichero	línea a línea. Compruebo que cada línea 
@@ -117,7 +113,7 @@ public class ContactosCovid {
 			 * lista correspondiente. Sino viene ninguno de esos tipos lanzo una excepción
 			 */
 			while ((data = br.readLine()) != null) {
-				datas = dividirEntrada(data.trim());
+				datas = dividirLineaData(data.trim());
 				for (String linea : datas) {
 					String datos[] = this.dividirLineaData(linea);
 					if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
@@ -212,11 +208,6 @@ public class ContactosCovid {
 		return false;
 	}
 
-	private String[] dividirEntrada(String input) {
-		String cadenas[] = input.split("\\n");
-		return cadenas;
-	}
-
 	private String[] dividirLineaData(String data) {
 		String cadenas[] = data.split("\\;");
 		return cadenas;
@@ -304,5 +295,11 @@ public class ContactosCovid {
 		segundo = Integer.parseInt(valores[1]);
 		FechaHora fechaHora = new FechaHora(dia, mes, anio, minuto, segundo);
 		return fechaHora;
+	}
+
+	private void reset(){
+		this.poblacion = new Poblacion();
+		this.localizacion = new Localizacion();
+		this.listaContactos = new ListaContactos();
 	}
 }
